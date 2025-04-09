@@ -51,17 +51,22 @@ router.get('/list', async (req, res) => {
           'Content-Type': 'application/json'
         },
         params: {
-          properties: ['name', 'team_city', 'team_state', 'team_country', 'team_division']
+          properties: ['team_name', 'team_location', 'team_country', 'team_division']
         }
       });
   
-      const companies = response.data.results;
+      const companies = response.data.results.filter(company => {
+        const p = company.properties;
+        return p.team_name && p.team_location && p.team_country && p.team_division;
+      });
+  
       res.render('companies', { companies });
     } catch (error) {
       console.error('Error fetching companies:', error.response?.data || error.message);
       res.status(500).send('❌ Error fetching companies');
     }
   });
+  
   
 
 module.exports = router;
