@@ -35,22 +35,27 @@ const teams = [
 ];
 
 async function createTeam(team) {
-  try {
-    const response = await axios.post(
-      'https://api.hubapi.com/crm/v3/objects/companies',
-      { properties: team },
-      {
-        headers: {
-          Authorization: `Bearer ${HUBSPOT_TOKEN}`,
-          'Content-Type': 'application/json'
+    try {
+      const response = await axios.post(
+        'https://api.hubapi.com/crm/v3/objects/companies',
+        {
+          properties: {
+            name: `${team.team_location} ${team.team_name}`, // This sets the display name
+            ...team
+          }
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${HUBSPOT_TOKEN}`,
+            'Content-Type': 'application/json'
+          }
         }
-      }
-    );
-    console.log(`✅ Created: ${team.team_location} / ${team.team_name}`);
-  } catch (error) {
-    console.error(`❌ Error for ${team.team_location} / ${team.team_name}:`, error.response?.data || error.message);
+      );
+      console.log(`✅ Created: ${team.team_location} / ${team.team_name}`);
+    } catch (error) {
+      console.error(`❌ Error for ${team.team_location} / ${team.team_name}:`, error.response?.data || error.message);
+    }
   }
-}
 
 async function run() {
   for (const team of teams) {

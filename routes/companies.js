@@ -20,6 +20,7 @@ router.post('/', async (req, res) => {
         'https://api.hubapi.com/crm/v3/objects/companies',
         {
           properties: {
+            name: `${team_location} ${team_name}`, // 🆕 This is what sets the record name in HubSpot
             team_location,
             team_name,
             team_country,
