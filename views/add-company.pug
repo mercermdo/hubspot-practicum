@@ -3,21 +3,18 @@ extends layout
 block content
   h2 Add a Hockey Team (Company)
 
-  form(action="/companies" method="POST")
-    .form-group
-      label(for="team_location") City:
-      input(type="text" name="team_location" placeholder="e.g. Detroit" required)
+  form(action='/companies' method='POST' class='form')
+    .form-row
+      label(for='team_location') City:
+      input(type='text' name='team_location' placeholder='e.g. Detroit')
+    .form-row
+      label(for='team_name') Team Name:
+      input(type='text' name='team_name' placeholder='e.g. Red Wings')
+    .form-row
+      label(for='team_country') Country:
+      input(type='text' name='team_country' placeholder='e.g. USA')
+    .form-row
+      label(for='team_division') Division:
+      input(type='text' name='team_division' placeholder='e.g. Central')
 
-    .form-group
-      label(for="team_name") Team Name:
-      input(type="text" name="team_name" placeholder="e.g. Red Wings" required)
-
-    .form-group
-      label(for="team_country") Country:
-      input(type="text" name="team_country" placeholder="e.g. USA" required)
-
-    .form-group
-      label(for="team_division") Division:
-      input(type="text" name="team_division" placeholder="e.g. Central" required)
-
-    button(type="submit") Add Team
+    button(type='submit') Add Team

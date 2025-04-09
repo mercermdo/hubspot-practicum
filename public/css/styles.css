@@ -78,3 +78,38 @@ body {
     margin: 0.25rem 0;
   }
   
+  .form-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    gap: 2rem;
+    max-width: 600px;
+    background: #eef;         /* subtle background so you can see spacing */
+    padding: 0.5rem;
+    border-radius: 4px;
+  }
+  
+  .form-row label {
+    min-width: 140px;
+    font-weight: bold;
+    color: #003366;
+  }
+  
+  .form-row input {
+    flex: 1;
+    font-size: 16px;
+    background: #fff;
+    border: 1px solid #ccc;
+    padding: 8px 10px;
+    border-radius: 4px;
+  }
+  
+  .form {
+    margin-top: 2rem;
+    background: #ffffff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+    max-width: 700px;
+  }
+  

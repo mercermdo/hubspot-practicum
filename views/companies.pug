@@ -7,8 +7,8 @@ block content
     .company-list
       each company in companies
         .company-card
-          h3 #{company.properties.name}
-          p Division: #{company.properties.team_division}
-          p Country: #{company.properties.team_country}
+          h3= company.properties.name
+          p Division: #{company.properties.team_division || 'N/A'}
+          p Country: #{company.properties.team_country || 'N/A'}
   else
     p No valid teams found.
