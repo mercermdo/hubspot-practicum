@@ -7,7 +7,8 @@ const HUBSPOT_TOKEN = process.env.HUBSPOT_PRIVATE_APP_TOKEN;
 
 // GET: Form to add a company
 router.get('/add', (req, res) => {
-  res.render('add-company');
+    res.render('updates');
+    ;
 });
 
 // POST: Submit form to create company
@@ -59,7 +60,7 @@ router.get('/list', async (req, res) => {
   
       const companies = response.data.results;
   
-      res.render('companies', { companies });
+      res.render('homepage', { companies });
     } catch (error) {
       console.error('Error fetching companies:', error.response?.data || error.message);
       res.status(500).send('❌ Error fetching companies');
