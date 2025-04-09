@@ -43,25 +43,24 @@ app.get('/companies/list', async (req, res) => {
 
 // Redirection routes for adding company
 app.get('/update-cobj', (req, res) => res.redirect('/companies/add')); // Redirects to company addition form
-app.post('/companies/add', (req, res) => {
-    // Your logic to add the company here...
-  
-    // After adding the company, render the index.pug with success message
-    res.render('index', { 
-      title: 'HubSpot Practicum',
-      message: 'Company added successfully!',
-      addAnotherLink: '/companies/add',  // Link to add another company
-      viewAllLink: '/companies/list'     // Link to view all companies
-    });
-});
 
-    res.render('index', { 
-      title: 'HubSpot Practicum',
-      message: 'Company added successfully!',
-      addAnotherLink: '/companies/add',
-      viewAllLink: '/companies/list'
-    });
-  });
+// POST route to add company
+app.post('/companies/add', (req, res) => {
+  // Logic to add the company here...
+
+  // After adding the company, render the index.pug with success message and links
+  const renderData = {
+    title: 'HubSpot Practicum',
+    message: 'Company added successfully!',
+    addAnotherLink: '/companies/add',  // Link to add another company
+    viewAllLink: '/companies/list'     // Link to view all companies
+  };
+
+  // Log the data being passed to make sure it's correct
+  console.log('Rendering with data:', renderData);
+
+  res.render('index', renderData);
+});
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
