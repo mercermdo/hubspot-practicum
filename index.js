@@ -43,7 +43,25 @@ app.get('/companies/list', async (req, res) => {
 
 // Redirection routes for adding company
 app.get('/update-cobj', (req, res) => res.redirect('/companies/add')); // Redirects to company addition form
-app.post('/update-cobj', (req, res) => res.redirect(307, '/companies')); // POST to add a company and redirect back to companies list
+app.post('/companies/add', (req, res) => {
+    // Your logic to add the company here...
+  
+    // After adding the company, render the index.pug with success message
+    res.render('index', { 
+      title: 'HubSpot Practicum',
+      message: 'Company added successfully!',
+      addAnotherLink: '/companies/add',  // Link to add another company
+      viewAllLink: '/companies/list'     // Link to view all companies
+    });
+});
+
+    res.render('index', { 
+      title: 'HubSpot Practicum',
+      message: 'Company added successfully!',
+      addAnotherLink: '/companies/add',
+      viewAllLink: '/companies/list'
+    });
+  });
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

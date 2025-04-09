@@ -3,3 +3,11 @@ extends layout
 block content
   h2 Welcome to the HubSpot Practicum for Hockey Teams
   p Use the navigation above to add and manage your custom companies.
+
+  // Conditionally display the success message if it exists
+  if message
+    h3= message
+    p
+      #[a(href=addAnotherLink) Add another company]
+      | or
+      #[a(href=viewAllLink) View all companies]
