@@ -7,7 +7,7 @@ block content
     .company-list
       each company in companies
         .company-card
-          h3 #{company.properties.team_location} / #{company.properties.team_name}
+          h3 #{company.properties.name}
           p Division: #{company.properties.team_division}
           p Country: #{company.properties.team_country}
   else

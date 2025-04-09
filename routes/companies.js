@@ -56,9 +56,10 @@ router.get('/list', async (req, res) => {
         }
       });
   
+      // Filter only companies with ALL 4 properties set
       const companies = response.data.results.filter(company => {
         const p = company.properties;
-        return p.team_name && p.team_location && p.team_country && p.team_division;
+        return p.name && p.team_country && p.team_division;
       });
   
       res.render('companies', { companies });
