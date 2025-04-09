@@ -1,0 +1,15 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/styles.css')
+  body
+    header
+      h1 HubSpot Practicum
+      nav
+        ul
+          li: a(href='/') Home
+          li: a(href='/companies/add') Add Company
+          li: a(href='/companies/list') View Companies
+    main
+      block content

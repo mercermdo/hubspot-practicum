@@ -1,0 +1,26 @@
+extends layout
+
+block content
+  h1 Add a Hockey Team (Company)
+  form(action="/companies" method="POST")
+    label(for="name") Name:
+    input(type="text" name="name" required)
+    br
+
+    label(for="team_city") City:
+    input(type="text" name="team_city" required)
+    br
+
+    label(for="team_state") State:
+    input(type="text" name="team_state")
+    br
+
+    label(for="team_country") Country:
+    input(type="text" name="team_country")
+    br
+
+    label(for="team_division") Division:
+    input(type="text" name="team_division")
+    br
+
+    button(type="submit") Submit
