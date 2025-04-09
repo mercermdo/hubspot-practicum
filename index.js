@@ -1,8 +1,7 @@
-// index.js
-
 const express = require('express');
 const path = require('path');
 require('dotenv').config();
+const axios = require('axios');
 
 const app = express();
 
@@ -13,12 +12,15 @@ app.set('view engine', 'pug');
 
 // 👇 Load your existing routes
 const companiesRouter = require('./routes/companies.js');
-app.use('/companies', companiesRouter);
+app.use('/companies', companiesRouter); // Routes for companies handled here
 
-// 👇 Required aliases
-const axios = require('axios');
+// Homepage route ("/") - Displays introduction
+app.get('/', (req, res) => {
+  res.render('index', { title: 'HubSpot Practicum' });
+});
 
-app.get('/', async (req, res) => {
+// Companies list route
+app.get('/companies/list', async (req, res) => {
   try {
     const response = await axios.get('https://api.hubapi.com/crm/v3/objects/companies', {
       headers: {
@@ -32,15 +34,16 @@ app.get('/', async (req, res) => {
     });
 
     const companies = response.data.results;
-    res.render('homepage', { companies });
+    res.render('companies', { companies }); // Pass the companies to the companies view
   } catch (error) {
-    console.error('❌ Error loading homepage:', error.response?.data || error.message);
-    res.status(500).send('❌ Error loading homepage');
+    console.error('❌ Error loading companies:', error.response?.data || error.message);
+    res.status(500).send('❌ Error loading companies');
   }
 });
 
-app.get('/update-cobj', (req, res) => res.redirect('/companies/add'));
-app.post('/update-cobj', (req, res) => res.redirect(307, '/companies'));
+// Redirection routes for adding company
+app.get('/update-cobj', (req, res) => res.redirect('/companies/add')); // Redirects to company addition form
+app.post('/update-cobj', (req, res) => res.redirect(307, '/companies')); // POST to add a company and redirect back to companies list
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
